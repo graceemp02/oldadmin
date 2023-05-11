@@ -74,7 +74,7 @@ const EditCustomer = () => {
       .catch(error => console.log(error));
   };
   const handleBack = () => {
-    return navigate('/clints');
+    return navigate('/clients');
   };
   return (
     <div className='centerTable'>

@@ -14,7 +14,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { NavItems, SuperNavItems } from './constants';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { CustomerContext } from '../CustomerContext';
@@ -67,7 +67,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer(props) {
+export default function MiniDrawer() {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const { setCustomerID } = React.useContext(CustomerContext);
@@ -81,11 +81,15 @@ export default function MiniDrawer(props) {
     setOpen(false);
   };
   const iconStyle = { width: '1.5em', height: '1.5em', color: '#2196f3 !important' };
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    localStorage.clear();
+    setCustomerID(null);
+    navigate('/login');
+  }
+  const location = useLocation()
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-
       <Drawer
         variant='permanent'
         open={open}
@@ -106,12 +110,11 @@ export default function MiniDrawer(props) {
             </Typography>
           )}
         </DrawerHeader>
-        {/* <Divider /> */}
         <List>
           {nav.map(item => {
             return (
               <ListItem
-                className={props.page === item.id ? 'active' : null}
+                className={location.pathname === item.route || location.pathname.startsWith(item.route + '/') ? 'active' : ''}
                 key={item.id}
                 disablePadding
                 sx={{ display: 'block' }}>
@@ -145,7 +148,8 @@ export default function MiniDrawer(props) {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            className={props.page === 9 ? 'active' : null}>
+            className={location.pathname === '/profile' ? 'active' : ''}
+            >
             <ListItemButton
               onClick={() => navigate('/profile')}
               sx={{
@@ -171,11 +175,7 @@ export default function MiniDrawer(props) {
             <form onSubmit={handleLogout}>
               <ListItemButton
                 type='submit'
-                onClick={() => {
-                  localStorage.clear();
-                  setCustomerID(null);
-                  navigate('/login');
-                }}
+                onClick={handleLogout}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',

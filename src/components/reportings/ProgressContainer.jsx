@@ -4,7 +4,6 @@ import React from 'react';
 import CircularProgress from './CircularProgress';
 
 const ProgressContainer = ({ columns, loading, data }) => {
-  console.log(data);
   return (
     <>
       {columns

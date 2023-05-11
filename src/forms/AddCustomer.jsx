@@ -92,7 +92,7 @@ const AddCustomer = () => {
             }}>
             Add New Customer
           </Typography>
-          <Button onClick={() => navigate('/clints')} variant='contained' sx={{ maxWidth: 200 }}>
+          <Button onClick={() => navigate('/clients')} variant='contained' sx={{ maxWidth: 200 }}>
             Back to List
           </Button>
         </div>
@@ -216,7 +216,7 @@ const AddCustomer = () => {
           title='Success'
           des='New Customer is added Successful.'
           actions={[
-            { onClick: () => navigate('/clints'), color: 'primary', text: 'Back to List' },
+            { onClick: () => navigate('/clients'), color: 'primary', text: 'Back to List' },
             { onClick: () => setOpen(false), color: 'success', text: 'Create New' },
           ]}
         />

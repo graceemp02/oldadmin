@@ -41,7 +41,6 @@ const Values = ({ InColumns, OutColumns }) => {
       clearInterval(intervalId);
     };
   }, [res, machineID]);
-  console.log(loading);
   const handleSwitch = e => {
     setSwitchVal(e.target.checked);
     setColumns(e.target.checked ? OutColumns : InColumns);

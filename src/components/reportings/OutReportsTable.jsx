@@ -134,7 +134,7 @@ export default function OutReportsTable({ loading, data, columns }) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 return (
-                  <StyledTableRow hover role='checkbox' tabIndex={-1} key={row.code}>
+                  <StyledTableRow hover role='checkbox' tabIndex={-1} key={index}>
                     {columns.map(column => {
                       const value = row[column.id];
                       return (

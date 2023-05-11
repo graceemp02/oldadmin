@@ -97,7 +97,7 @@ const Customers = () => {
   };
   const handleEdit = index => {
     let user = filteredRows[index];
-    navigate('/clints/edit', { state: user });
+    navigate('/clients/edit', { state: user });
   };
 
   return (
@@ -214,7 +214,7 @@ const Customers = () => {
                 }}
               />
               <Button
-                onClick={() => navigate('/clints/new')}
+                onClick={() => navigate('/clients/new')}
                 variant='contained'
                 color='success'
                 sx={{ maxWidth: 200 }}>
