@@ -48,6 +48,7 @@ const AddMachine = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    console.log(formData.get('date'))
     if (isSuper) formData.append('isSuper', true);
     // for (const [name, value] of formData.entries()) {
     //   console.log(`${name}: ${value}`);
@@ -55,7 +56,6 @@ const AddMachine = () => {
     await axios
       .post('addMachine.php', formData)
       .then(result => {
-        console.log(result.data);
         const res = result.data['res'];
         if (res === 'true') {
           nameRef.current.value = '';

@@ -34,9 +34,8 @@ const IndoorSensors = () => {
   }, [machineID]);
   const handleSubmit = async e => {
     e.preventDefault();
-    let formData = new FormData();
+    let formData = new FormData(e.currentTarget);
     formData.append('api', machineID);
-    formData.append('date', `${value.year()}-${value.month() + 1}-${value.date()}`);
     axios
       .post('inspection.php', formData)
       .then(res => {
@@ -76,7 +75,7 @@ const IndoorSensors = () => {
             inputFormat='MM-DD-YYYY'
             value={value}
             onChange={handleChange}
-            renderInput={params => <TextField {...params} />}
+            renderInput={params => <TextField name='date' {...params} />}
           />
         </LocalizationProvider>
         <Button sx={{ height: '5vh' }} variant='contained' type='submit'>
